@@ -22,8 +22,8 @@ const config: Config = {
         serif: ["var(--font-playfair)"],
       },
       animation: {
-        marquee: "marquee 30s linear infinite",
-        "marquee-hover": "marquee 30s linear infinite paused",
+        marquee: "marquee 60s linear infinite",
+        "marquee-hover": "marquee 60s linear infinite paused",
       },
       keyframes: {
         marquee: {
