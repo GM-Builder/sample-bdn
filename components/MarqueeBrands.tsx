@@ -2,26 +2,35 @@
 import { useState } from "react";
 import { Building2 } from "lucide-react";
 
+/**
+ * BrandLogo component handles the logic for displaying a brand's logo
+ * with a fallback to the brand's name. It prioritizes visibility
+ * to ensure the marquee never looks empty.
+ */
 const BrandLogo = ({ name, domain }: { name: string, domain: string }) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="flex items-center gap-3 mx-8 md:mx-12 grayscale hover:grayscale-0 transition-all duration-300">
-      {!imgError ? (
-          <img
-            src={`https://logo.clearbit.com/${domain}`}
-            alt=""
-            className="h-12 w-auto max-w-[140px] object-contain text-transparent"
-            style={{ textIndent: "-9999px" }}
-            onError={() => setImgError(true)}
-          />
-      ) : (
-        <div className="flex items-center gap-2 text-gray-400 hover:text-bdn-dark">
-          <Building2 size={24} />
-          <span className="text-xl md:text-2xl font-bold tracking-tight whitespace-nowrap">
-            {name}
-          </span>
-        </div>
+    <div className="flex items-center justify-center min-w-[140px] md:min-w-[180px] h-20 mx-4 md:mx-6 grayscale hover:grayscale-0 transition-all duration-300 relative group">
+      
+      {/* Fallback Text / Loading State - Always visible until image successfully loads */}
+      <div className={`flex items-center gap-2 text-gray-400 group-hover:text-bdn-dark transition-opacity duration-500 ${imgLoaded ? 'opacity-0' : 'opacity-100'}`}>
+        <Building2 size={20} className="shrink-0" />
+        <span className="text-lg md:text-xl font-bold tracking-tight whitespace-nowrap">
+          {name}
+        </span>
+      </div>
+
+      {/* Actual Logo Image - Overlays the text once loaded */}
+      {!imgError && (
+        <img
+          src={`https://logo.clearbit.com/${domain}?size=100`}
+          alt={name}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => setImgError(true)}
+          className={`absolute inset-0 w-full h-full object-contain p-2 transition-opacity duration-700 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+        />
       )}
     </div>
   );
@@ -49,18 +58,21 @@ export default function MarqueeBrands() {
   ];
 
   return (
-    <section className="py-12 border-y border-gray-200/50 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-8 text-center sm:text-left">
-        <p className="text-sm font-semibold tracking-wider text-gray-400 uppercase">
-          Our Esteemed Partners
+    <section className="py-16 border-y border-gray-100 bg-white overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6 mb-10">
+        <p className="text-xs font-bold tracking-[0.2em] text-gray-400 uppercase text-center sm:text-left">
+          Trusted by Industry Leaders
         </p>
       </div>
-      <div className="relative flex w-full max-w-7xl mx-auto group">
-        <div className="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-white to-transparent z-10" />
 
-        <div className="flex animate-marquee group-hover:animate-marquee-hover items-center">
-          {[...partners, ...partners].map((brand, i) => (
+      <div className="relative flex w-full group">
+        {/* Gradient Fades for cinematic transition */}
+        <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+        {/* The Marquee Loop */}
+        <div className="flex animate-marquee group-hover:animate-marquee-hover items-center whitespace-nowrap">
+          {[...partners, ...partners, ...partners].map((brand, i) => (
             <BrandLogo key={`${brand.name}-${i}`} name={brand.name} domain={brand.domain} />
           ))}
         </div>
