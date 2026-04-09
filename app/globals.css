@@ -54,6 +54,29 @@ body {
   filter: contrast(150%) brightness(100%);
 }
 
+.glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 100%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-green {
+  background: radial-gradient(circle, #1b4235, transparent);
+}
+
+.glow-beige {
+  background: radial-gradient(circle, #f1efe4, transparent);
+}
+
+.glow-orange {
+  background: radial-gradient(circle, #f97316, transparent);
+}
+
 /* For browsers that don't support SVG filter well */
 @supports not (filter: contrast(150%)) {
   .grain-overlay {
