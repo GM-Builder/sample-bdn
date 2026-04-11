@@ -84,7 +84,7 @@ export default function Services() {
         >
           <div className="max-w-2xl">
             <motion.p variants={itemVariants} className="text-sm font-bold tracking-widest text-orange-500 uppercase mb-4">Our Heartbeat</motion.p>
-            <motion.h2 variants={itemVariants} className="text-5xl md:text-6xl font-bold font-sans text-white leading-tight">
+            <motion.h2 variants={itemVariants} className="text-5xl md:text-6xl lg:text-7xl font-bold font-sans text-white leading-tight">
               Support at <br/>Every <span className="font-serif italic text-orange-400 font-light">Milestone.</span>
             </motion.h2>
           </div>
@@ -98,7 +98,7 @@ export default function Services() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-[280px]"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-[280px]"
         >
           {/* Featured TotLE Camp */}
           <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-2">

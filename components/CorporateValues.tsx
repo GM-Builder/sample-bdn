@@ -39,12 +39,14 @@ export default function CorporateValues() {
   return (
     <section id="values" className="relative py-40 bg-[#faf9f6]">
       {/* Background Soul */}
-      <div className="glow glow-green top-10 left-[-10%] opacity-[0.05]" />
-      <div className="glow glow-beige bottom-20 right-[-10%] opacity-40" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="glow glow-green top-10 left-[-10%] opacity-[0.05]" />
+        <div className="glow glow-beige bottom-20 right-[-10%] opacity-40" />
+      </div>
 
       <div className="max-w-4xl mx-auto px-6 text-center mb-32 relative z-10">
         <p className="text-sm font-bold tracking-[0.3em] text-[#45a382] uppercase mb-6">Our DNA</p>
-        <h2 className="text-5xl md:text-8xl font-bold font-sans text-bdn-dark leading-none">
+        <h2 className="text-5xl md:text-6xl lg:text-8xl font-bold font-sans text-bdn-dark leading-none">
           Rooted in <br/><span className="font-serif italic text-bdn-green font-light">Belief.</span>
         </h2>
       </div>
@@ -57,7 +59,7 @@ export default function CorporateValues() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-            className="sticky w-full rounded-[3.5rem] md:rounded-[5rem] p-12 md:p-20 shadow-[0_50px_100px_-20px_rgba(27,66,53,0.12)] flex flex-col md:flex-row items-center gap-12 md:gap-20 border border-white bg-white/70 backdrop-blur-3xl"
+            className="sticky w-full rounded-[3.5rem] md:rounded-[5rem] p-12 md:p-14 lg:p-20 shadow-[0_50px_100px_-20px_rgba(27,66,53,0.12)] flex flex-col lg:flex-row items-center gap-12 lg:gap-20 border border-white bg-white/70 backdrop-blur-3xl"
             style={{ 
               top: `calc(12vh + ${i * 40}px)`, 
               zIndex: i 
@@ -71,7 +73,7 @@ export default function CorporateValues() {
 
             {/* Content */}
             <div className="text-center md:text-left">
-              <h3 className="text-4xl md:text-6xl font-bold text-bdn-dark mb-6 tracking-tighter leading-none">{val.title}</h3>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-bdn-dark mb-6 tracking-tighter leading-none">{val.title}</h3>
               <p className="text-xl md:text-2xl text-gray-500 leading-relaxed font-light">
                 {val.desc}
               </p>
